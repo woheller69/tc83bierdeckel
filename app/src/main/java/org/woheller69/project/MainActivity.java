@@ -24,13 +24,20 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnReset;
     private List<String> pricesList;
     private TextView tvPriceListDate;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PriceList priceList = new PriceList(this);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String countsStr = sharedPref.getString("counts", null);
+
+        PriceList priceList = new PriceList(this, countsStr==null);
         pricesList = priceList.loadPriceList(this);
+        tvPriceListDate = findViewById(R.id.tvPriceListDate);
+        tvPriceListDate.setText("Stand Preisliste:" + priceList.getPriceListDate(this));
         counts = new int[pricesList.size()];
 
         restoreCounts();
@@ -38,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout itemsContainer = findViewById(R.id.itemsContainer);
         tvTotal = findViewById(R.id.tvTotal);
         btnReset = findViewById(R.id.btnReset);
-        tvPriceListDate = findViewById(R.id.tvPriceListDate);
-        tvPriceListDate.setText("Stand Preisliste:" + priceList.getPriceListDate(this));
+
 
         for (int i = 0; i < pricesList.size(); i++) {
             createItemRow(itemsContainer, i);
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                             counts[i] = 0;
                             countTextViews.get(i).setText("0");
                         }
-                        saveCounts(); // Save the reset state
+                        sharedPref.edit().clear().apply();
                         updateTotal(); // Update the total display
                     })
                     .show();
@@ -105,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void restoreCounts() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String countsStr = sharedPref.getString("counts", null);
         if (countsStr != null) {
             String[] parts = countsStr.split("%");
@@ -116,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveCounts() {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < counts.length; i++) {

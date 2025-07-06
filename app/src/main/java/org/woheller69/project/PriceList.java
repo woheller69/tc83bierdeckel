@@ -133,9 +133,9 @@ public class PriceList {
                 out.close();
 
                 tempfile.delete();
-
                 priceList.clear();
                 Log.w("PriceList", "Price list updated");
+                ((Activity) context).runOnUiThread(()->{((Activity) context).recreate();});
 
             } catch (IOException i) {
                 Log.w("PriceList", "Error updating price list", i);
@@ -151,7 +151,7 @@ public class PriceList {
         return priceList;
     }
 
-    public PriceList(Context context) {
+    public PriceList(Context context, boolean update) {
         File file = new File(context.getDir("filesdir", Context.MODE_PRIVATE) + "/"+FILE);
         if (!file.exists()) {
             //copy pricelist.txt from assets if not available
@@ -169,8 +169,8 @@ public class PriceList {
 
             Date lastModified = new Date(file.lastModified());
             if (lastModified.before(time.getTime())|| getPriceListDate(context).equals("")) {  //also download again if something is wrong with the file
-                //update if file is older than 30 days
-                downloadPriceList(context);
+                //update if file is older than 30 days if no open bill
+                if (update) downloadPriceList(context);
             }
         }
     }
