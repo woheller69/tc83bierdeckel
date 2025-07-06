@@ -1,10 +1,18 @@
-# TC83 PriceList
+# TC83 Preise
 #
 # Date: 06.07.2025
 #
 # ===============================================================
-Weißbier|3.0
-Helles|2.5
-Wein|4.0
-Weißbier leicht|3.5
+Weißbier 0.5l|2.5
+Weißbier 0.5l, leicht|2.5
+Weißbier 0.5l, alkoholfrei|2.5
+Limo, Spezi 0.5l|1.5
+Apfelschorle 0.5l|1.5
+Helles 0.5l|2.5
+Helles 0.5l, alkoholfrei|2.5
+Dunkel 0.3l|2.0
+Mars, Snickers|0.8
+Breze|1.0
+Laterndlmaß|8.0
+
 
