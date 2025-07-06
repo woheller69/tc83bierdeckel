@@ -45,6 +45,7 @@
             android:layout_gravity="end"
             android:layout_marginBottom="20dp"
             android:scaleType="fitXY"
+            android:backgroundTint="?colorPrimary"
             android:src="@drawable/trash_24dp" />
         <TextView
             android:id="@+id/tvPriceListDate"
@@ -54,4 +55,10 @@
             android:text="Stand Preisliste:"
             android:textSize="14sp" />
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Quellcode"
+        android:onClick="github"/>
 </LinearLayout>

@@ -1,7 +1,9 @@
 package org.woheller69.project;
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void restoreCounts() {
-        SharedPreferences sharedPref = getSharedPreferences("bierdeckel", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String countsStr = sharedPref.getString("counts", null);
         if (countsStr != null) {
             String[] parts = countsStr.split("%");
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveCounts() {
-        SharedPreferences sharedPref = getSharedPreferences("bierdeckel", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < counts.length; i++) {
@@ -138,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         tvTotal.setText(String.format("Total: %.2f €", total));
+    }
+    public void github(View v){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/woheller69/tc83bierdeckel")));
     }
 }
 

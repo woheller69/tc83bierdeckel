@@ -39,11 +39,13 @@
         android:id="@+id/btnMinus"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:backgroundTint="?colorPrimary"
         android:src="@drawable/minus_24dp"/>
 
     <ImageButton
         android:id="@+id/btnPlus"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:backgroundTint="?colorPrimary"
         android:src="@drawable/plus_24dp"/>
 </LinearLayout>
