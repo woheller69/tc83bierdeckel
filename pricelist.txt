@@ -1,18 +1,35 @@
 # TC83 Preise
 #
-# Date: 06.07.2025
+# Date: 07.07.2025
 #
 # ===============================================================
-Weißbier 0.5l|2.5
-Weißbier 0.5l, leicht|2.5
-Weißbier 0.5l, alkoholfrei|2.5
-Limo, Spezi 0.5l|1.5
-Apfelschorle 0.5l|1.5
-Helles 0.5l|2.5
-Helles 0.5l, alkoholfrei|2.5
-Dunkel 0.3l|2.0
-Mars, Snickers|0.8
-Breze|1.0
-Laterndlmaß|8.0
-
-
+Bier hell, 0.5l|2.50
+Weißbier hell, 0.5l|2.50
+Weißbier dunkel, 0.5l|2.50
+Weißbier leicht, 0.5l|2.50
+Weißbier alkoholfrei, 0.5l|2.50
+Zehmerbräu, 0.3l|2.00
+Lager dunkel, 0.3l|2.00
+Radler, 0.5l|2.50
+Jever fun alkoholfrei, 0.5l|2.50
+Weißwein, 0.25l|2.50
+Rotwein, 0.25l|2.50
+Weißwein Flasche, 1l|8.00
+Rotwein Flasche, 0.75l|7.00
+Piccolo, 0.2l|2.50
+Prosecco, 0.75l|7.00
+Weinschorle, 0.5l|3.00
+Apfelschorle, 0.5l|1.50
+Rote Schorle, 0.5l|1.50
+ACE Multivitamin, 0.5l|1.50
+Sport ISO Drink, 0.5l|1.50
+Zitronenlimo, 0.5l|1.50
+Spezi, 0.5l|1.50
+Wasser, 0.75l|1.00
+Kaffee Haferl|1.00
+Erdnüsse|1.50
+Eis|1.00
+Corny-Riegel|0.80
+Mars/Snickers/Twix|0.80
+Sonstiges|1.00
+Sonstiges|0.50

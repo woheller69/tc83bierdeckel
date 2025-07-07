@@ -1,10 +1,35 @@
-# TC83 PriceList
+# TC83 Preise
 #
-# Date: 06.07.2025
+# Date: 07.07.2025
 #
 # ===============================================================
-Weißbier|3.0
-Helles|2.5
-Wein|4.0
-Weißbier leicht|3.5
-
+Bier hell, 0.5l|2.50
+Weißbier hell, 0.5l|2.50
+Weißbier dunkel, 0.5l|2.50
+Weißbier leicht, 0.5l|2.50
+Weißbier alkoholfrei, 0.5l|2.50
+Zehmerbräu, 0.3l|2.00
+Lager dunkel, 0.3l|2.00
+Radler, 0.5l|2.50
+Jever fun alkoholfrei, 0.5l|2.50
+Weißwein, 0.25l|2.50
+Rotwein, 0.25l|2.50
+Weißwein Flasche, 1l|8.00
+Rotwein Flasche, 0.75l|7.00
+Piccolo, 0.2l|2.50
+Prosecco, 0.75l|7.00
+Weinschorle, 0.5l|3.00
+Apfelschorle, 0.5l|1.50
+Rote Schorle, 0.5l|1.50
+ACE Multivitamin, 0.5l|1.50
+Sport ISO Drink, 0.5l|1.50
+Zitronenlimo, 0.5l|1.50
+Spezi, 0.5l|1.50
+Wasser, 0.75l|1.00
+Kaffee Haferl|1.00
+Erdnüsse|1.50
+Eis|1.00
+Corny-Riegel|0.80
+Mars/Snickers/Twix|0.80
+Sonstiges|1.00
+Sonstiges|0.50
