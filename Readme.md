@@ -5,7 +5,8 @@
 
 # Download
 <a href='https://github.com/woheller69/tc83bierdeckel/releases/download/V1.0/TC83_Bierdeckel.apk'><img alt='Get it on GitHub' src='https://github.com/woheller69/tc83bierdeckel/raw/refs/heads/master/get_it_on_github.png' style="width: 180px; height: 58px;" /></a>
-<img src="qr-download.png" width="50"/>
+
+<img src="qr-download.png" width="180"/>
 
 ## License
 
