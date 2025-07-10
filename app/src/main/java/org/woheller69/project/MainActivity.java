@@ -1,20 +1,31 @@
 package org.woheller69.project;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.Manifest;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestNotificationPermission();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         String countsStr = sharedPref.getString("counts", null);
@@ -66,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .show();
         });
+        scheduleDailyReminder(this);
     }
 
     private void createItemRow(LinearLayout container, int index) {
@@ -144,9 +157,52 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         tvTotal.setText(String.format("Total: %.2f €", total));
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putFloat("total", (float) total).apply();
     }
     public void github(View v){
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/woheller69/tc83bierdeckel")));
+    }
+
+    public static void scheduleDailyReminder(Context context) {
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+                .build();
+
+        long initialDelay = getInitialDelay();
+        Log.d("Intitial delay", String.valueOf(initialDelay));
+        PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(DailyNotificationWorker.class, 1, TimeUnit.DAYS)
+                .setConstraints(constraints)
+                .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
+                .addTag("daily_reminder")
+                .build();
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+                "DailyReminderWork",
+                ExistingPeriodicWorkPolicy.REPLACE,
+                workRequest
+        );
+    }
+
+    private static long getInitialDelay() {
+        Calendar now = Calendar.getInstance();
+        Calendar target = Calendar.getInstance();
+
+        target.add(Calendar.DAY_OF_MONTH, now.get(Calendar.HOUR_OF_DAY) >= 9 ? 1 : 0);
+        target.set(Calendar.HOUR_OF_DAY, 9);
+        target.set(Calendar.MINUTE, 0);
+        target.set(Calendar.SECOND, 0);
+        target.set(Calendar.MILLISECOND, 0);
+
+        return target.getTimeInMillis() - now.getTimeInMillis();
+    }
+
+    public void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS},123);
+            }
+        }
     }
 }
 
