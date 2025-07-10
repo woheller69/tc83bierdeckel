@@ -1,4 +1,5 @@
 package org.woheller69.project;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             countTextViews.get(i).setText("0");
                         }
                         sharedPref.edit().clear().apply();
+                        dismissNotification();
                         updateTotal(); // Update the total display
                     })
                     .show();
@@ -202,6 +204,13 @@ public class MainActivity extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS},123);
             }
+        }
+    }
+
+    private void dismissNotification() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.cancelAll();
         }
     }
 }
