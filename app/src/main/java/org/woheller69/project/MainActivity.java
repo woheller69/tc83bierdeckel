@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         updateTotal();
 
         btnReset.setOnClickListener(v -> {
+            HapticFeedback.vibrate(this);
             Snackbar.make(v, "ZURÜCKSETZEN?", Snackbar.LENGTH_LONG)
                     .setAction("OK", view -> {
                         // Reset counters in memory
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         sharedPref.edit().clear().apply();
                         dismissNotification();
+                        HapticFeedback.vibrate(this);
                         updateTotal(); // Update the total display
                     })
                     .show();
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 counts[index]--;
                 tvCount.setText(String.valueOf(counts[index]));
                 saveCounts();
+                HapticFeedback.vibrate(this);
                 updateTotal();
             }
         });
@@ -117,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             counts[index]++;
             tvCount.setText(String.valueOf(counts[index]));
             saveCounts();
+            HapticFeedback.vibrate(this);
             updateTotal();
         });
 
