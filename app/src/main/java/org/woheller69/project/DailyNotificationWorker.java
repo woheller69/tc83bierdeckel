@@ -27,13 +27,13 @@ public class DailyNotificationWorker extends Worker {
         float total = sharedPrefs.getFloat("total", 0.0f);
 
         if (total > 0.0f) {
-            showNotification(getApplicationContext(), total);
+            showNotification(getApplicationContext(), total, false);
         }
 
         return Result.success();
     }
 
-    private void showNotification(Context context, float total) {
+    public static void showNotification(Context context, float total, boolean silent) {
         String channelId = "daily_reminder";
         String title = "TC83 Bierdeckel";
         String message = String.format("Total: %.2f €", total);
@@ -55,6 +55,7 @@ public class DailyNotificationWorker extends Worker {
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
+                .setSilent(silent)
                 .build();
 
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

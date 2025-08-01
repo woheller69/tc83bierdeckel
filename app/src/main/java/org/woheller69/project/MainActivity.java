@@ -163,6 +163,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         tvTotal.setText(String.format("Total: %.2f €", total));
+
+        if (total > 0.0f) {
+            DailyNotificationWorker.showNotification(this, (float) total, true);
+        }
+
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putFloat("total", (float) total).apply();
     }
