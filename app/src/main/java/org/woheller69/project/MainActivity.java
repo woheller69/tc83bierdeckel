@@ -171,8 +171,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putFloat("total", (float) total).apply();
     }
+
     public void github(View v){
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/woheller69/tc83bierdeckel")));
+    }
+
+    public void paypal(View v){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/paypalme/tennisclub83")));
     }
 
     public static void scheduleDailyReminder(Context context) {
